@@ -1,5 +1,6 @@
 class Student < ActiveRecord::Base
   has_many :records
   has_many :meetings, through: :records
-  validates :name, presence: true
+  belongs_to :course
+  validates :name, :course_id, presence: true
 end

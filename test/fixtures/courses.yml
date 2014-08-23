@@ -2,10 +2,6 @@
 
 one:
   name: MyString
-  when: 2010-02-11 11:02:57
-  course_id: 123
 
 two:
   name: MyString
-  when: 2010-02-11 11:02:57
-  course_id: 123
