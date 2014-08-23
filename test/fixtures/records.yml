@@ -1,0 +1,12 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  value: true
+  meeting_id: 1
+  student_id: 2
+  
+two:
+  value: true
+  meeting_id: 3
+  student_id: 4
+  
