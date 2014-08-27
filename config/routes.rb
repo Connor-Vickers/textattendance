@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   resources :courses
 
-  resources :records
+  #resources :records
 
+  post '/sms', to: 'records#update'
+  
   resources :students
 
   resources :meetings

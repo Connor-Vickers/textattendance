@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  first: MyString
+  last: MyString
   course_id: 123
+  number: 456
 
 two:
-  name: MyString
-  course_id: 123
+  first: MyString
+  last: MyString
+  course_id: 456
+  number: 123
