@@ -2,11 +2,20 @@
 
 one:
   value: true
-  meeting_id: 1
-  student_id: 2
+  meeting: :one
+  student: :one
   
 two:
   value: true
-  meeting_id: 3
-  student_id: 4
+  meeting: :two
+  student: :one
   
+being_destroyed_one:
+  value: true
+  meeting: :to_destroy
+  student: :one
+
+being_destroyed_two:
+  value: true
+  meeting: :to_destroy
+  student: :two
