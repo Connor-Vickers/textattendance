@@ -36,7 +36,7 @@ class StudentTest < ActiveSupport::TestCase
   end
   
   test "should associate student and record" do 
-	assert students(:one).records.length == 3
+	assert students(:one).records.length > 0
   end
   
   test "should destroy dependent records if destroyed" do
@@ -50,6 +50,6 @@ class StudentTest < ActiveSupport::TestCase
 	
 	after = Record.where(student: to_destroy).length
 	assert(after == 0, 
-	"dependent records where not destroyed when student was") 
+	"dependent records were not destroyed when student was") 
   end
 end

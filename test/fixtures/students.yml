@@ -17,4 +17,10 @@ to_destroy:
   last: MyString
   course: :one
   number: 321
-
+  
+being_destroyed_by_course_one:
+  first: MyString
+  last: MyString
+  course: :to_destroy
+  number: 321
+  

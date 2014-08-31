@@ -21,9 +21,11 @@ meeting = Meeting.new
   end
   
   test "shouldn't create meeting with same auth" do 
+    #assert false, meetings(:valid)[:auth]
     meeting[:auth] = meetings(:valid)[:auth]
+	#meeting[:auth] = 123
 	meeting.save
-	assert meeting.errors.messages[:auth][0] == "has already been taken"
+	assert  meeting.errors.messages[:auth][0] == "has already been taken"
   end
   
   test "should associate  meeting and course" do 
@@ -31,7 +33,7 @@ meeting = Meeting.new
   end
   
   test "should associate meeting and record" do 
-	assert meetings(:one).records.length == 2
+	assert meetings(:one).records.length > 0
   end
   
   test "should allow nil auth" do 
@@ -43,10 +45,10 @@ meeting = Meeting.new
   test "should allow multiple nil auth" do 
     first = meetings :one
     first[:auth] = nil
-	assert first.save
+	assert first.save, first.errors.messages
 	second = meetings :two
     second[:auth] = nil
-	assert second.save
+	assert second.save, second.errors.messages
   end
   
   test "should destroy dependent records if destroyed" do
@@ -60,6 +62,6 @@ meeting = Meeting.new
 	
 	after = Record.where(meeting: to_destroy).length
 	assert(after == 0, 
-	"dependent records where not destroyed when meeting was") 
+	"dependent records were not destroyed when meeting was") 
   end
 end

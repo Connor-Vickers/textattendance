@@ -3,20 +3,26 @@
 one:
   name: MyString
   when: 2010-02-11 11:02:57
-  course: course_1
+  course: :course_1
 
 two:
   name: MyString
   when: 2010-02-11 11:02:57
-  course: course_1
+  course: :one
   
 valid:
   name: MyString
-  when: 2010-02-11 11:02:57
-  course: course_1
+  when: 2010-02-11 11:02:58
+  course: :course_1
   auth: 123
   
 to_destroy:
   name: MyString
   when: 2010-02-11 11:02:57
-  course: course_1
+  course: :course_1
+  
+being_destroyed_by_course_one:
+  name: MyString
+  when: 2010-02-11 11:02:57
+  course: :to_destroy
+  

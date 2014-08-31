@@ -8,3 +8,6 @@ two:
   
 course_1:
   name: Course one
+  
+to_destroy:
+  name: adfgafsg
