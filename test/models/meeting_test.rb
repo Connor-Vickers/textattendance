@@ -9,25 +9,25 @@ meeting = Meeting.new
   end
   
   test "shouldn't create meeting with no course" do 
-	assert meeting.errors.messages.has_key? :course 
-  end
-  
-  test "should associate  meeting and course" do 
-	assert meetings(:valid)[:course_id] == courses(:course_1)[:id]
+	assert meeting.errors.messages[:course][0] == "can't be blank"
   end
   
   test "shouldn't create meeting with no name" do 
-	assert meeting.errors.messages.has_key? :name
+	assert meeting.errors.messages[:name][0] == "can't be blank"
   end
   
   test "shouldn't create meeting with no when" do 
-	assert meeting.errors.messages.has_key? :when
+	assert meeting.errors.messages[:when][0] == "can't be blank"
   end
   
   test "shouldn't create meeting with same auth" do 
     meeting[:auth] = meetings(:valid)[:auth]
 	meeting.save
-	assert meeting.errors.messages.has_key? :auth
+	assert meeting.errors.messages[:auth][0] == "has already been taken"
+  end
+  
+  test "should associate  meeting and course" do 
+	assert meetings(:valid)[:course_id] == courses(:course_1)[:id]
   end
   
   test "should allow nil auth" do 

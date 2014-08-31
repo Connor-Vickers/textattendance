@@ -10,20 +10,6 @@ two:
   when: 2010-02-11 11:02:57
   course: course_1
   
-# empty:
- 
-# no_course:
-  # name: MyString
-  # when: 2010-02-11 11:02:57
-  
-# no_name:
-  # when: 2010-02-11 11:02:57
-  # course_id: 123
-  
-# no_when:
-  # name: MyString
-  # course_id: 123
-  
 valid:
   name: MyString
   when: 2010-02-11 11:02:57
@@ -34,9 +20,3 @@ to_destroy:
   name: MyString
   when: 2010-02-11 11:02:57
   course: course_1
-  
-# same_auth:
-  # name: MyString
-  # when: 2010-02-11 11:02:57
-  # course_id: 123
-  # auth: 123
