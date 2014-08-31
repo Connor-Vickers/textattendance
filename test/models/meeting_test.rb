@@ -30,6 +30,10 @@ meeting = Meeting.new
 	assert meetings(:valid)[:course_id] == courses(:course_1)[:id]
   end
   
+  test "should associate meeting and record" do 
+	assert meetings(:one).records.length == 2
+  end
+  
   test "should allow nil auth" do 
     meeting[:auth] = nil
 	meeting.save

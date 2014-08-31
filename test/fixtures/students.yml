@@ -3,11 +3,18 @@
 one:
   first: MyString
   last: MyString
-  course_id: 123
+  course: :one
   number: 456
 
 two:
   first: MyString
   last: MyString
-  course_id: 456
+  course: :one
   number: 123
+  
+to_destroy:
+  first: MyString
+  last: MyString
+  course: :one
+  number: 321
+

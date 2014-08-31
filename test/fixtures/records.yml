@@ -10,12 +10,22 @@ two:
   meeting: :two
   student: :one
   
-being_destroyed_one:
+being_destroyed_by_meeting_one:
   value: true
   meeting: :to_destroy
   student: :one
 
-being_destroyed_two:
+being_destroyed_by_meeting_two:
   value: true
   meeting: :to_destroy
   student: :two
+  
+being_destroyed_by_student_one:
+  value: true
+  meeting: :one
+  student: :to_destroy
+
+being_destroyed_by_student_two:
+  value: true
+  meeting: :two
+  student: :to_destroy

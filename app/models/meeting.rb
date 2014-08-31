@@ -1,6 +1,6 @@
 class Meeting < ActiveRecord::Base
   has_many :records, dependent: :destroy
-  has_many :students, through: :records
+  has_many :students, through: :records#untested
   belongs_to :course
   validates :when, :name, :course, presence: true
   validates :auth, uniqueness: { allow_nil: true }
