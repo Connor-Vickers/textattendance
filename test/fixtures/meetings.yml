@@ -3,7 +3,8 @@
 one:
   name: MyString
   when: 2010-02-11 11:02:57
-  course: :course_1
+  course: :one
+  auth: 234
 
 two:
   name: MyString

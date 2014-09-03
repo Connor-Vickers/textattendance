@@ -15,6 +15,7 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   def new
     @meeting = Meeting.new
+	@course = Course.find(params[:course_id])
   end
 
   # GET /meetings/1/edit
