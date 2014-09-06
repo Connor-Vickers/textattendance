@@ -23,3 +23,14 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<link rel="stylesheet" type="text/css" href="/assets/jquery.datetimepicker.css"/ >
+<script src="/assets/jquery.js"></script>
+<script src="/assets/jquery.datetimepicker.js"></script>
+
+<script>
+  $('#meeting_when').datetimepicker({
+    closeOnDateSelect:true,
+	validateOnBlur:true
+  });
+</script>

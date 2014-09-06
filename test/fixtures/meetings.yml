@@ -2,28 +2,28 @@
 
 one:
   name: MyString
-  when: 2010-02-11 11:02:57
+  when: 2010/11/2 11:02
   course: :one
   auth: 234
 
 two:
   name: MyString
-  when: 2010-02-11 11:02:57
+  when: 2010/11/2 11:02
   course: :one
   
 valid:
   name: MyString
-  when: 2010-02-11 11:02:58
+  when: 2010/11/2 11:02
   course: :course_1
   auth: 123
   
 to_destroy:
   name: MyString
-  when: 2010-02-11 11:02:57
+  when: 2010/11/2 11:027
   course: :course_1
   
 being_destroyed_by_course_one:
   name: MyString
-  when: 2010-02-11 11:02:57
+  when: 2010/11/2 11:02
   course: :to_destroy
   

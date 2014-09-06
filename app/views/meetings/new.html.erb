@@ -3,3 +3,22 @@
 <%= render 'form' %>
 
 <%= link_to 'Back', course_path(@course)%>
+
+
+
+<script type="text/javascript">
+  var elem = document.getElementById("meeting_when");
+  var d = new Date();
+  var m = d.getMonth() + 1;
+  
+  if(m < 10) {
+    var m = "0" + m;
+  }
+  
+  d = d.toString();
+  
+  elem.value = d.slice(11,15)//year
+  + "/" + m  + "/" + d.slice(8,11)//date
+  + d.slice(16,21);//time
+
+</script>

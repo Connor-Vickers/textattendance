@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   resources :courses do
-    resources :meetings, only: [:new, :create, :show, :edit, :update, :destroy]
+    resources :meetings
   end
-  #resources :records
 
   post '/sms', to: 'records#update'
   
