@@ -1,6 +1,7 @@
 class MeetingsController < ApplicationController
   before_action :set_meeting, only: [:show, :edit, :update, :destroy]
   before_action :set_course
+  protect_from_forgery except: :newauth 
 
   # GET /meetings
   # GET /meetings.json
@@ -60,6 +61,27 @@ class MeetingsController < ApplicationController
       format.html { redirect_to course_path(@course), notice: 'Meeting was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  def takeattendance
+  end
+  
+  def newauth
+    meeting = Meeting.find(params[:meeting_id])
+	if params[:last] == "true"
+	  meeting[:auth] = nil
+	  meeting.save
+	  render nothing: true
+	else
+	  auth = rand(10000).to_s
+	  meeting[:auth] = auth
+	  while !meeting.valid?
+	    auth = rand(10000).to_s
+        meeting[:auth] = auth
+	  end
+	  meeting.save
+      render inline: auth.to_s
+	end
   end
 
   private

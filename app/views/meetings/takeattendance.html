@@ -1,0 +1,74 @@
+<canvas id="myCanvas" width="250" height="250"></canvas>
+
+
+<div id="auth"><h2></h2></div>
+
+<script>
+
+function getNewAuth(last)
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+if (last)
+  var resp = "newauth?last=true"
+else
+  var resp = "newauth?last=false"
+xmlhttp.open("POST",resp,false);
+xmlhttp.send();
+document.getElementById("auth").innerHTML=xmlhttp.responseText;
+}
+
+//animation
+
+(function () {
+    var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    window.requestAnimationFrame = requestAnimationFrame;
+})();
+
+var canvas = document.getElementById('myCanvas');
+var context = canvas.getContext('2d');
+var x = canvas.width / 2;
+var y = canvas.height / 2;
+var radius = 50;
+var endPercent = -1;
+var curPerc = 100;
+var startPerc = 100;
+var counterClockwise = true;
+var circ = Math.PI * 2;
+var quart = Math.PI / 2;
+
+context.lineWidth = 30;
+context.strokeStyle = '#ad2323';
+
+function animate(current) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.beginPath();
+    context.arc(x, y, radius, -(quart), ((circ) * current) - quart, false);
+    context.stroke();
+    curPerc--;
+    
+    if (curPerc == endPercent) {
+        curPerc = startPerc;
+		getNewAuth(false);
+    }
+        setTimeout(function () {
+            requestAnimationFrame(function () {
+                animate(curPerc / 100);});
+        }, 200);
+
+}
+getNewAuth(false);
+animate();
+
+window.onbeforeunload = function(e) {
+    e.preventDefault();
+    getNewAuth(true);
+}
+</script>

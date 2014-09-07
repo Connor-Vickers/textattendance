@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   resources :courses do
-    resources :meetings
+    resources :meetings do
+	  get '/takeattendance', to: 'meetings#takeattendance'
+	  post '/newauth', to: 'meetings#newauth'
+	end
   end
 
-  post '/sms', to: 'records#update'
+  post '/sms', to: 'records#create'
+  
+  
   
   #resources :students
   
