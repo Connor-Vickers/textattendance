@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   post '/sms', to: 'records#create'
   
+  root 'courses#index'
+  
   
   
   #resources :students
