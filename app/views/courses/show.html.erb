@@ -1,31 +1,77 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>name:</strong>
+  <strong>Course Name:</strong>
   <%= @course.name %>
 </p>
 
 <%= link_to 'New Meeting', new_course_meeting_path(@course)%>
 
-<table>
-  <thead>
-    <tr>
-      <th>meetings</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
+<% if @sorted_meetings.length > 0 %>
+	<table>
+	  <thead>
+		<tr>
+		  <th></th><!-- name -->
+		  <th></th>
+		  <% @sorted_meetings.each do |meeting|%>
+			<th scope="col"><%= meeting.name %></th>
+		  <% end %>
+		</tr>
+		<tr>
+		  <th></th><!-- date -->
+		  <th></th>
+		  <% @sorted_meetings.each do |meeting|%>
+			<th scope="col"><%= meeting.when.split(' ')[0] %></th>
+		  <% end %>
+		</tr>
+		<tr>
+		  <th></th><!-- time -->
+		  <th></th>
+		  <% @sorted_meetings.each do |meeting|%>
+			<th scope="col"><%= meeting.when.split(' ')[1] %></th>
+		  <% end %>
+		</tr>
+		<tr><!-- Take Attendance -->
+		  <th></th>
+		  <th></th>
+		  <% @sorted_meetings.each do |meeting|%>
+			<th scope="col"><%= link_to 'Take Attendance', course_meeting_takeattendance_path(@course, meeting) %></th>
+		  <% end %>
+		</tr>
+		<tr><!-- edit -->
+		  <th colspan= "2">Student</th>
+		  <% @sorted_meetings.each do |meeting|%>
+			<th scope="col"><%= link_to 'Edit', edit_course_meeting_path(@course, meeting) %></th>
+		  <% end %>
+		</tr>
+		<tr><!-- Delete -->
+		  <th>First Name</th>
+		  <th>Last Name</th>
+		  <% @sorted_meetings.each do |meeting|%>
+			<th scope="col"><%= link_to 'Delete', course_meeting_path(@course, meeting), method: :delete, data: { confirm: 'Are you sure?' } %></th>
+		  <% end %>
+		</tr>
+	  </thead>
+	  <tbody>
+		<% @sorted_students.each do |student|%>
+		  <th scope="row"><%= student.first %></th>
+		  <th scope="row"><%= student.last %></th>
+		  <% @sorted_meetings.each do |meeting|%>
+			<% record = Record.find_by student: student, meeting: meeting %>
+			<% if record %>
+			  <td>Present</td>
+			<% else %>
+			  <td>Unverified</td>
+			<% end %>
+		  <% end %>
+		<% end %>
+	  
+	  </tbody>
 
-  <tbody>
-    <% @course.meetings.sort_by(&:when).reverse.each do |meeting| %>
-      <tr>
-        <td><%= meeting.name %></td>
-		<td><%= meeting.when %></td>
-        <td><%= link_to 'Show', course_meeting_path(@course, meeting) %></td>
-		<td><%= link_to 'Update', edit_course_meeting_path(@course, meeting) %></td>
-        <td><%= link_to 'Destroy', course_meeting_path(@course, meeting), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+	</table>
+<% else %>
+  <p>No Meetings</p>
+<% end %>
+
 
 <%= link_to 'Back', courses_path %>

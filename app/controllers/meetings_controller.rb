@@ -24,42 +24,34 @@ class MeetingsController < ApplicationController
   end
 
   # POST /meetings
-  # POST /meetings.json
   def create
     @meeting = @course.meetings.new(meeting_params)
 
     respond_to do |format|
       if @meeting.save
-        format.html { redirect_to [@course, @meeting], notice: 'Meeting was successfully created.' }
-        format.json { render :show, status: :created, location: @meeting }
+        format.html { redirect_to @course, notice: 'Meeting was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @meeting.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /meetings/1
-  # PATCH/PUT /meetings/1.json
   def update
     respond_to do |format|
       if @meeting.update(meeting_params)
-        format.html { redirect_to [@course, @meeting], notice: 'Meeting was successfully updated.' }
-        format.json { render :show, status: :ok, location: @meeting }
+        format.html { redirect_to @course, notice: 'Meeting was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @meeting.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /meetings/1
-  # DELETE /meetings/1.json
   def destroy
     @meeting.destroy
     respond_to do |format|
       format.html { redirect_to course_path(@course), notice: 'Meeting was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
   
