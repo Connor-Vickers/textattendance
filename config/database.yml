@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: attendanceninja_production
-  username: attendanceninja
+  #username: attendanceninja
   password: <%= ENV['ATTENDANCENINJA_DATABASE_PASSWORD'] %>
