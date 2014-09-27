@@ -1,5 +1,11 @@
+<script>
+  document.getElementById("title").innerHTML = "Courses";
+</script>
+
 <p id="notice"><%= notice %></p>
 <h1>Listing courses</h1>
+
+
 <div>
 	<table>
 	  <thead>
@@ -22,6 +28,20 @@
 	</table>
 </div>
 
+<% @courses.each do |course| %>
+    <div class="card">
+	  <p><%= course.name %></p>
+	  <paper-button class="view" label="View" onclick='location.href="<%= course_path(course) %>"' raisedButton></paper-button>
+	  <paper-button class="takeAttendance" label="Take Attendance" raisedButton></paper-button>
+    </div>
+<% end %>
+
+<paper-fab id="add" style="background-image:url(<%= asset_path 'add.png' %>);" onclick='location.href="<%= new_course_path %>"'></paper-fab>
+
 <br>
+
+<div layout="horizontal" layout-align="center center">
+	<div>center center</div>
+</div>
 
 <%= link_to 'New Course', new_course_path %>

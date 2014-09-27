@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -41,3 +42,6 @@ gem 'spring',        group: :development
 #ruby '2.0.0' local
 #ruby '2.1.1' deployment
 gem 'rails_12factor', group: :production
+gem 'polymer-rails'
+gem 'polymer-core-rails'
+gem 'polymer-paper-rails'
