@@ -17,10 +17,12 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   def new  
 	@meeting = @course.meetings.new
+	@button_label = "Take Attendance"
   end
 
   # GET /meetings/1/edit
   def edit
+    @button_label = "Update"
   end
 
   # POST /meetings
@@ -29,7 +31,7 @@ class MeetingsController < ApplicationController
 
     respond_to do |format|
       if @meeting.save
-        format.html { redirect_to @course, notice: 'Meeting was successfully created.' }
+        format.html { redirect_to course_meeting_takeattendance_path(@course, @meeting)}
       else
         format.html { render :new }
       end

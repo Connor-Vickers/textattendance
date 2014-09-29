@@ -27,6 +27,7 @@ body {
 div.main{
 	width: 700px;
 	margin: auto;
+	padding: 40px;
 }
 
 div.card{
@@ -69,6 +70,8 @@ paper-fab{
 core-toolbar{
 	background-color: $toolbar;
 	color: $orange;
+	font-weight: bold;
+	font-size: 24px;
 }
 	
 	
