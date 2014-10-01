@@ -71,6 +71,8 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name)
+      ret_params = params.require(:course).permit(:name, :user_id)
+	  ret_params[:user_id] = session[:user_id]
+	  return ret_params
     end
 end

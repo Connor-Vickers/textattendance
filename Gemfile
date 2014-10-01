@@ -45,3 +45,5 @@ gem 'rails_12factor', group: :production
 gem 'polymer-rails'
 gem 'polymer-core-rails'
 gem 'polymer-paper-rails'
+
+gem "bcrypt"
