@@ -8,8 +8,6 @@ class ApplicationController < ActionController::Base
   helper_method :check_logged_out
   helper_method :check_right_user
   
-  add_breadcrumb :root
-  
   protected 
 	def check_right_user(user)
 	  if session[:user_id] and (user == (User.find session[:user_id]))

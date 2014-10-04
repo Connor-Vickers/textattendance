@@ -1,13 +1,18 @@
-<% check_logged_in %>
+<%- model_class = Course -%>
+<table class="table table-striped">
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.name %></td>
+        <td class="right">
+            <a class="btn btn-success" href="<%= new_course_meeting_path(course) %>">Take Attendance</a>
+            <a class="btn btn-info" href="<%= course_path(course) %>">View Attendance</a>
+            <a class="btn btn-warning" href="<%= edit_course_path(course) %>">Edit</a>
+            <a class="btn btn-danger" data-confirm="Are you sure?" data-method="delete" href="<%= course_path(course) %>" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-
-<p id="notice"><%= notice %></p>
-
-<% @courses.each do |course| %>
-    <div class="card">
-	  <p><%= course.name %></p>
-	  <paper-button class="view" label="View" onclick='location.href="<%= course_path(course) %>"' raisedButton></paper-button>
-	  <paper-button class="takeAttendance" label="Take Attendance" onclick='location.href="<%= new_course_meeting_path(course) %>"' raisedButton></paper-button>
-    </div>
-<% end %>
-
+<a class="btn btn-primary" href="<%= new_course_path %>">New Course</a>

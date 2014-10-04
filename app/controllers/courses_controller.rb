@@ -1,7 +1,8 @@
 class CoursesController < ApplicationController
+  before_action do add_breadcrumb "Courses", :courses_path end
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   
-  add_breadcrumb "hi"
+  #, :courses_path
 
   # GET /courses
   # GET /courses.json
@@ -13,16 +14,18 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @sorted_meetings = @course.meetings.sort_by(&:when)
-	@sorted_students = @course.students
+	  @sorted_students = @course.students
   end
 
   # GET /courses/new
   def new
     @course = Course.new
+    add_breadcrumb "New"
   end
 
   # GET /courses/1/edit
   def edit
+    add_breadcrumb "Edit"
   end
 
   # POST /courses
@@ -69,6 +72,7 @@ class CoursesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_course
       @course = Course.find(params[:id])
+      add_breadcrumb @course.name, course_path(@course)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

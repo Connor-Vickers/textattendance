@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   
   #root 'courses#index'
   
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  get "log_in" => "sessions#new", :as => "log_in"
+  get "log_out" => "sessions#destroy", :as => "sign_out"
+  get "log_in" => "sessions#new", :as => "sign_in"
   get "sign_up" => "users#new", :as => "sign_up"
   root :to => "users#new"
   resources :users

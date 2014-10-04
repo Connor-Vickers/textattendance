@@ -10,38 +10,18 @@
 
 <%= nav_bar :static => :top, :responsive => true do %>
   <%= menu_group do %>
-    <%= render_breadcrumbs('>') %>
+    <h2><%= render_breadcrumbs('>') %></h2>
   <% end %>
 	<%= menu_group :pull => :right do %>
-	  <%= menu_item "Sign Out", root_path %>
+    <% if get_user %>
+      Logged in as <%= get_user.email %>&nbsp
+      <a class="btn btn-default navbar-btn", href="<%= sign_out_path %>">Sign Out</a>
+    <% else %>
+      <%= menu_item "Sign up", sign_up_path %> or
+      <%= menu_item "log in", sign_in_path %>
+    <% end %>
 	<% end %>
 <% end %>
-
-<%= render_breadcrumbs('>') %>
-
-<ol class="breadcrumb">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">Library</a></li>
-  <li class="active">Data</li>
-</ol>
-
-
-
-
-<div id="user_nav">
-  <% if get_user %>
-    Logged in as <%= get_user.email %>.
-    <%= link_to "Log out", log_out_path %>
-  <% else %>
-    <%= link_to "Sign up", sign_up_path %> or
-    <%= link_to "log in", log_in_path %>
-  <% end %>
-</div>
-
-
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash_#{name}" %>
-  <% end %>
   
 <div class="container">
   <%= yield %>

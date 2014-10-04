@@ -1,9 +1,2 @@
-<script>
-  document.getElementById("title").innerHTML = "Courses>New Courses";
-</script>
-
-<div class="card">
-  <%= render 'form' %>
-</div>
-<paper-button label="Create Course"  raisedButton></paper-button>
-<!--onclick='location.href="<%=  %>"'-->
+<%- model_class = Course -%>
+<%= render :partial => 'form' %>
