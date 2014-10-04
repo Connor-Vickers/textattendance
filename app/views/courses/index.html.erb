@@ -1,7 +1,5 @@
 <% check_logged_in %>
-<script>
-  document.getElementById("title").innerHTML = "Courses";
-</script>
+
 
 <p id="notice"><%= notice %></p>
 
@@ -13,4 +11,3 @@
     </div>
 <% end %>
 
-<paper-fab id="add" style="background-image:url(<%= asset_path 'add.png' %>);" onclick='location.href="<%= new_course_path %>"'></paper-fab

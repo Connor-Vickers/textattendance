@@ -2,14 +2,30 @@
 <html>
 <head>
   <title>Attendanceninja</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <%= html_import_tag 'application'%>
-  <link href="//fonts.googleapis.com/css?family=Roboto:100italic,100,300italic,300,400italic,400,500italic,500,700italic,700,900italic,900" rel="stylesheet" type="text/css">  
-  <!-- <link rel="import" href="assets/core-icons.html"> -->
   </head>
 <body>
+
+<%= nav_bar :static => :top, :responsive => true do %>
+  <%= menu_group do %>
+    <%= render_breadcrumbs('>') %>
+  <% end %>
+	<%= menu_group :pull => :right do %>
+	  <%= menu_item "Sign Out", root_path %>
+	<% end %>
+<% end %>
+
+<%= render_breadcrumbs('>') %>
+
+<ol class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Library</a></li>
+  <li class="active">Data</li>
+</ol>
+
+
 
 
 <div id="user_nav">
@@ -26,13 +42,10 @@
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, :id => "flash_#{name}" %>
   <% end %>
-  <core-toolbar>
-    <div id="title"></div>
-  </core-toolbar>
   
-  <div class="main">
-    <%= yield %>
-  </div>
+<div class="container">
+  <%= yield %>
+</div>
   
 </body>
 </html>
