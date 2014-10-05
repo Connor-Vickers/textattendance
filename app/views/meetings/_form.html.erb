@@ -1,28 +1,46 @@
-<%= form_for [@course, @meeting] do |f| %>
-  <% if @meeting.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+<%= form_for [@course, @meeting], :html => { :class => "form-horizontal meeting" } do |f| %>
 
-      <ul>
-      <% @meeting.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @meeting.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @meeting.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name, 'Name of Meeting' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@meeting[:name]) %>
   </div>
-  <div class="field">
-    <%= f.label :when %><br>
-    <%= f.text_field :when %>
+  <div class="control-group">
+    <%= f.label :when, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :when, :class => 'form-control' %>
+    </div>
+    <%= error_span(@meeting[:when]) %>
   </div>
-  <div class="actions">
-    <%= submit_tag(@button_label) %>
-  </div>
+
+  <br>
+  
+  <% if @take_attendance %>
+    <%= f.submit "Take Attendance", :class => 'btn btn-success' %>
+  <% else %>
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+  <% end %>
+  <a class="btn btn-default" href="<%= course_path(@course) %>">Cancel</a>
+
 <% end %>
+
 
 <link rel="stylesheet" type="text/css" href="/assets/jquery.datetimepicker.css"/ >
 <script src="/assets/jquery.js"></script>
@@ -34,6 +52,3 @@
 	validateOnBlur:true
   });
 </script>
-
-
-<!--<paper-input floatinglabel="" label="Floating label" layout="" vertical=""></paper-input> -->

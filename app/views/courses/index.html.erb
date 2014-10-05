@@ -3,7 +3,7 @@
   <tbody>
     <% @courses.each do |course| %>
       <tr>
-        <td><%= course.name %></td>
+        <td class="big"><%= course.name %></td>
         <td class="right">
             <a class="btn btn-success" href="<%= new_course_meeting_path(course) %>">Take Attendance</a>
             <a class="btn btn-info" href="<%= course_path(course) %>">View Attendance</a>

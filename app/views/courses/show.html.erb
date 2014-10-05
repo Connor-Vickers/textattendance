@@ -1,11 +1,81 @@
 <%- model_class = Course -%>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @course.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @course.user_id %></dd>
-</dl>
 
+
+<% if @sorted_meetings.length > 0 %>
+  <table class="table" id="courses">
+    <thead>
+      <tr>
+        <th></th><!-- name -->
+        <th></th>
+        <% @sorted_meetings.each do |meeting|%>
+        <th scope="col"><%= meeting.name %></th>
+        <% end %>
+      </tr>
+      <tr>
+        <th></th><!-- date -->
+        <th></th>
+        <% @sorted_meetings.each do |meeting|%>
+        <th scope="col"><%= meeting.when.split(' ')[0] %></th>
+        <% end %>
+      </tr>
+      <tr>
+        <th>First Name</th><!-- time -->
+        <th>Last Name</th>
+        <% @sorted_meetings.each do |meeting|%>
+        <th scope="col"><%= meeting.when.split(' ')[1] %></th>
+        <% end %>
+      </tr>
+      
+    </thead>
+    <% if @sorted_students.length > 0 %>
+      <tbody>
+        <% @sorted_students.each do |student|%>
+          <th class="active" scope="row"><%= student.first %></th>
+          <th class="active" scope="row"><%= student.last %></th>
+          <% @sorted_meetings.each do |meeting|%>
+          <% record = Record.find_by student: student, meeting: meeting %>
+          <% if record %>
+            <td>Present</td>
+          <% else %>
+            <td>Unverified</td>
+          <% end %>
+          <% end %>
+        <% end %>
+      </tbody>
+     <% else %>
+      <td colspan="<%= @sorted_meetings.length + 2 %>">No students yet.</td>
+    <% end %>
+    <thead>
+      <tr><!-- Take Attendance -->
+          <th></th>
+          <th></th>
+          <% @sorted_meetings.each do |meeting|%>
+          <th scope="col"><a class="btn btn-success" href="<%= course_meeting_takeattendance_path(@course, meeting) %>">Add To Attendance</a></th>
+          <% end %>
+        </tr>
+        <tr><!-- edit -->
+          <th></th>
+          <th></th>
+          <% @sorted_meetings.each do |meeting|%>
+          <th scope="col"><a class="btn btn-warning" href="<%= edit_course_meeting_path(@course, meeting) %>">Edit</a></th>
+          <% end %>
+        </tr>
+        <tr><!-- Delete -->
+          <th></th>
+          <th></th>
+          <% @sorted_meetings.each do |meeting|%>
+          <th scope="col"><a class="btn btn-danger" data-confirm="Are you sure?" data-method="delete" href="<%= course_meeting_path(@course, meeting) %>" rel="nofollow">Delete</a></th>
+          <% end %>
+        </tr>
+    </thead>
+    
+
+  </table>
+<% else %>
+  <p>No meetings yet.</p>
+<% end %>
+
+<a class="btn btn-success" href="<%= new_course_meeting_path(@course) %>">Take Attendance</a>
 <%= link_to t('.back', :default => t("helpers.links.back")),
               courses_path, :class => 'btn btn-default'  %>

@@ -17,8 +17,8 @@
       Logged in as <%= get_user.email %>&nbsp
       <a class="btn btn-default navbar-btn", href="<%= sign_out_path %>">Sign Out</a>
     <% else %>
-      <%= menu_item "Sign up", sign_up_path %> or
-      <%= menu_item "log in", sign_in_path %>
+      <a class="btn btn-default navbar-btn", href="<%= sign_up_path %>">Sign Up</a> or 
+      <a class="btn btn-default navbar-btn", href="<%=  sign_in_path %>">Sign In</a>
     <% end %>
 	<% end %>
 <% end %>

@@ -1,6 +1,7 @@
 class MeetingsController < ApplicationController
-  before_action :set_meeting, only: [:show, :edit, :update, :destroy]
   before_action :set_course
+  before_action :set_meeting, only: [:show, :edit, :update, :destroy]
+  
   protect_from_forgery except: :newauth 
 
   # GET /meetings
@@ -17,12 +18,11 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   def new  
 	@meeting = @course.meetings.new
-	@button_label = "Take Attendance"
+  add_breadcrumb "New Meeting"
   end
 
   # GET /meetings/1/edit
   def edit
-    @button_label = "Update"
   end
 
   # POST /meetings
@@ -62,30 +62,33 @@ class MeetingsController < ApplicationController
   
   def newauth
     meeting = Meeting.find(params[:meeting_id])
-	if params[:last] == "true"
-	  meeting[:auth] = nil
-	  meeting.save
-	  render nothing: true
-	else
-	  auth = rand(10000).to_s
-	  meeting[:auth] = auth
-	  while !meeting.valid?
-	    auth = rand(10000).to_s
-        meeting[:auth] = auth
-	  end
-	  meeting.save
+    if params[:last] == "true"
+      meeting[:auth] = nil
+      meeting.save
+      render nothing: true
+    else
+      auth = rand(10000).to_s
+      meeting[:auth] = auth
+      while !meeting.valid?
+        auth = rand(10000).to_s
+          meeting[:auth] = auth
+      end
+      meeting.save
       render inline: auth.to_s
-	end
+    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_meeting
       @meeting = Meeting.find(params[:id])
+      add_breadcrumb @meeting.name
     end
 		
-	def set_course
+    def set_course
       @course = Course.find(params[:course_id])
+      add_breadcrumb "Courses", :courses_path
+      add_breadcrumb @course.name, course_path(@course)
     end
 	
     # Never trust parameters from the scary internet, only allow the white list through.
