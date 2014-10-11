@@ -47,3 +47,4 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'unicorn'
 gem "bcrypt"
+gem "rails_serve_static_assets"
