@@ -5,11 +5,16 @@ class UsersController < ApplicationController
 
 	def create
 	  @user = User.new(user_params)
-	  if @user.save
-		redirect_to root_url, :notice => "Signed up!"
-	  else
-		render "new"
-	  end
+	  if @user.email == "hvicker@purdue.edu" 
+      if @user.save
+        session[:user_id] = @user.id
+        redirect_to courses_url
+      else
+      render "new"
+      end
+    else
+      redirect_to root_url, :notice => 'At this time Text Attendance only open to beta users.'
+    end
 	end
 private
     # Never trust parameters from the scary internet, only allow the white list through.

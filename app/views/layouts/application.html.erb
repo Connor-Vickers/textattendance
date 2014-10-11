@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Attendanceninja</title>
+  <title>Text Attendance</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   </head>
 <body>
-
 <%= nav_bar :static => :top, :responsive => true do %>
   <%= menu_group do %>
     <h2><%= render_breadcrumbs('>') %></h2>
@@ -22,6 +21,7 @@
     <% end %>
 	<% end %>
 <% end %>
+<%= bootstrap_flash %>
   
 <div class="container">
   <%= yield %>

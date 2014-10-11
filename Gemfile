@@ -45,6 +45,5 @@ gem 'rails_12factor', group: :production
 gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
-
-
+gem 'unicorn'
 gem "bcrypt"
