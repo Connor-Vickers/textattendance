@@ -39,8 +39,7 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-#ruby '2.0.0' local
-#ruby '2.1.1' deployment
+ruby '2.1.3'
 gem 'rails_12factor', group: :production
 
 gem "therubyracer"
