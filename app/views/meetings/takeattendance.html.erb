@@ -1,13 +1,12 @@
 <%= stylesheet_link_tag 'takeattendance', media: 'all', 'data-turbolinks-track' => true %>
-
-<h1>Text <h1/>
-<h1><div id="auth"></div></h1>
-<h1>To 6468 IM HERE *<h1/>
-<h3>(646-846-4373)</h3>
+<br>
+<p id="auth"></p>
+<p>To (646) 846-4373*</p>
 
 <p>Time Remaining:</p>
-<canvas id="myCanvas" width="250" height="250"></canvas>
-<p>*Standard Messaging Rates Apply</p> 
+<canvas id="myCanvas" width="275" height="275"></canvas>
+<h3>*Standard Messaging Rates Apply</h3> 
+<a class="btn-lg btn-default" href="<%= course_path(@course) %>">Back</a>
 
 <script>
 
@@ -28,7 +27,7 @@ else
   var resp = "newauth?last=false"
 xmlhttp.open("POST",resp,false);
 xmlhttp.send();
-document.getElementById("auth").innerHTML=xmlhttp.responseText;
+document.getElementById("auth").innerHTML="TEXT " + xmlhttp.responseText;
 }
 
 //animation
@@ -42,23 +41,23 @@ var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
 var x = canvas.width / 2;
 var y = canvas.height / 2;
-var radius = 50;
-var endPercent = -1;
-var curPerc = 100;
-var startPerc = 100;
+var radius = 100;
+var endPercent = 100;
+var curPerc = 0;
+var startPerc = 0;
 var counterClockwise = true;
 var circ = Math.PI * 2;
 var quart = Math.PI / 2;
 
-context.lineWidth = 30;
-context.strokeStyle = '#000000';
+context.lineWidth = 60;
+context.strokeStyle = '#FFFFFF';
 
 function animate(current) {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.beginPath();
-    context.arc(x, y, radius, -(quart), ((circ) * current) - quart, false);
+    context.arc(x, y, radius, -(quart), ((circ) * current) - quart, counterClockwise);
     context.stroke();
-    curPerc--;
+    curPerc++;
     
     if (curPerc == endPercent) {
         curPerc = startPerc;
@@ -67,7 +66,7 @@ function animate(current) {
         setTimeout(function () {
             requestAnimationFrame(function () {
                 animate(curPerc / 100);});
-        }, 200);
+        }, 300);
 
 }
 getNewAuth(false);

@@ -1,3 +1,18 @@
 .navbar{
   display: none;
 }
+
+body{
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+p{
+  font-size: 60px;
+}
+
+.btn-lg{
+  margin-top: 40px;
+  display: inline-block;
+}
