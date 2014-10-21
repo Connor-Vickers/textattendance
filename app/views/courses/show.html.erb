@@ -31,6 +31,7 @@
     <% if @sorted_students.length > 0 %>
       <tbody>
         <% @sorted_students.each do |student|%>
+          <tr>
           <th class="active" scope="row"><%= student.first %></th>
           <th class="active" scope="row"><%= student.last %></th>
           <% @sorted_meetings.each do |meeting|%>
@@ -41,6 +42,7 @@
             <td>Unverified</td>
           <% end %>
           <% end %>
+          </tr>
         <% end %>
       </tbody>
      <% else %>
