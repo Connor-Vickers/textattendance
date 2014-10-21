@@ -14,7 +14,7 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @sorted_meetings = @course.meetings.sort_by(&:when)
-	  @sorted_students = @course.students
+	  @sorted_students = @course.students.sort_by(&:last)
   end
 
   # GET /courses/new
