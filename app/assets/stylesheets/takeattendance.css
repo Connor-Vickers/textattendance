@@ -16,3 +16,6 @@ p{
   margin-top: 40px;
   display: inline-block;
 }
+footer {
+display: none;
+}
