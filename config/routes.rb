@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   root :to => "application#home"
   resources :users
   resources :sessions
+
+  get "validate_email" =>"users#validate", :as => "validate_email"
   
   
   

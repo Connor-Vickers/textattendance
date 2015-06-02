@@ -1,5 +1,5 @@
-class MeetingRenamenameColumn < ActiveRecord::Migration
+class MeetingRenameNameColumn < ActiveRecord::Migration
   def change
-    rename_column :meetings, :Name, :name#may fail change :name to :name but couldn't remigrate
+    rename_column :meetings, :Name, :name
   end
 end
