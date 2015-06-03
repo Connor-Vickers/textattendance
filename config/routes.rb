@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   resources :sessions
 
   get "validate_email" =>"users#validate", :as => "validate_email"
+  get "unlock" =>"users#unlock", :as => "unlock"
+
   
   
   

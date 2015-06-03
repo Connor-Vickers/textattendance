@@ -17,8 +17,8 @@
     <h2><%= render_breadcrumbs('>') %></h2>
   <% end %>
 	<%= menu_group :pull => :right do %>
-    <% if get_user %>
-      Logged in as <%= get_user.email %>&nbsp
+    <% if @user %>
+      Logged in as <%= @user.email %>&nbsp
       <a class="btn btn-default navbar-btn", href="<%= sign_out_path %>">Sign Out</a>
     <% else %>
       <a class="btn btn-default navbar-btn", href="<%= sign_up_path %>">Sign Up</a> or 

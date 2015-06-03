@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-protect_from_forgery except: :create 
+  skip_before_filter :set_user
   # POST /sms
   def create  
 	  meeting = Meeting.find_by auth: params[:Body]

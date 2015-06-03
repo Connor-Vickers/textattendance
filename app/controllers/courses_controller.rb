@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.where("user_id = ?",  session[:user_id])
+    @courses = Course.where("user_id = ?",  @user.id)
   end
 
   # GET /courses/1
@@ -77,8 +77,8 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      ret_params = params.require(:course).permit(:name, :user_id)
-	  ret_params[:user_id] = session[:user_id]
+    ret_params = params.require(:course).permit(:name, :user_id)
+	  ret_params[:user_id] = @user.id
 	  return ret_params
     end
 end

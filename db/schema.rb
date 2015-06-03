@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602181057) do
+ActiveRecord::Schema.define(version: 20150602183521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,8 +61,11 @@ ActiveRecord::Schema.define(version: 20150602181057) do
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email_check"
+    t.string   "auth_token"
     t.integer  "login_attempts"
+    t.boolean  "locked"
+    t.boolean  "email_needs_validated"
+    t.boolean  "password_needs_reset"
   end
 
 end
