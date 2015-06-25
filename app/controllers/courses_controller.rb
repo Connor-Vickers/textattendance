@@ -15,6 +15,10 @@ class CoursesController < ApplicationController
   def show
     @sorted_meetings = @course.meetings.sort_by(&:when)
 	  @sorted_students = @course.students.sort_by(&:last)
+    respond_to do |format|
+      format.html
+      format.csv
+    end
   end
 
   # GET /courses/new

@@ -79,5 +79,8 @@
 <% end %>
 
 <a class="btn btn-success" href="<%= new_course_meeting_path(@course) %>">Take Attendance</a>
+
+<a class="btn btn-success" href="<%= course_path(format: "csv") %>">Download Attendance</a>
+
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              courses_path, :class => 'btn btn-default'  %>
+              courses_path, :class => 'btn btn-default'  %>            

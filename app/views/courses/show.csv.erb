@@ -1,0 +1,13 @@
+<%- model_class = Course -%>
+<% if @sorted_meetings.length > 0 %>
+Last Name, First Name, Number of Meetings Attended out of <%=@sorted_meetings.length %>, Percent Attendance\n
+  <% @sorted_students.each do |student|
+      number_attended  = 0
+      student.meetings do |meeting|
+        if meeting.value
+          number_attended += 1;
+        end
+      end %>
+    <%= student.first %>,<%= student.last %>,<%= number_attended %>,<%= (number_attended.to_f*100/@sorted_meetings.length).round(2) %>\n
+  <% end %>
+<% end %>
