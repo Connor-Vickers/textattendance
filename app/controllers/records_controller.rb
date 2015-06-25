@@ -1,5 +1,6 @@
 class RecordsController < ApplicationController
   skip_before_filter :set_user
+  skip_before_filter :verify_authenticity_token
   # POST /sms
   def create  
 	  meeting = Meeting.find_by auth: params[:Body]
