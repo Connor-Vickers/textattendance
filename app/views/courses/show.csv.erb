@@ -2,8 +2,8 @@
 <% if @sorted_meetings.length > 0 %>
 Last Name, First Name, Number of Meetings Attended out of <%=@sorted_meetings.length %>, Percent Attendance
   <% @sorted_students.each do |student|
-          logger.debug 'here'
-      logger.debug student.meetings
+      puts 'here'
+      puts student.meetings
       number_attended  = 0
       student.meetings do |meeting|
         if meeting.value
