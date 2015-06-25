@@ -2,14 +2,17 @@
 <% if @sorted_meetings.length > 0 %>
 Last Name, First Name, Number of Meetings Attended out of <%=@sorted_meetings.length %>, Percent Attendance
   <% @sorted_students.each do |student|
-      puts 'here'
-      puts student.meetings
       number_attended  = 0
-      student.meetings do |meeting|
-        if meeting.value
-          number_attended += 1;
+      @sorted_meetings.each do |meeting|
+          record = Record.find_by student: student, meeting: meeting
+          if record 
+              number_attended += 1;
+          end
         end
-      end %>
+      end 
+       #     puts 'here'
+      #puts student.meetings
+      %>
 <%= student.first %>,<%= student.last %>,<%= number_attended %>,<%= (number_attended.to_f*100/@sorted_meetings.length).round(2) %>
   <% end %>
 <% end %>
