@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 	def create
 	  @newuser = User.new(user_params)
 
-	  if @user.email == "hvicker@purdue.edu" or  @user.email == "connorvic97@gmail.com" or @user.email == "mit"
+	  if @newuser.email == "hvicker@purdue.edu" or  @newuser.email == "connorvic97@gmail.com" or @newuser.email == "mit"
       if @newuser.save
         Mailer.validation_email(@newuser).deliver
         redirect_to root_url, :notice => 'An Email has been sent to ' + @newuser.email + ' follow the link to validate your email and sign in.'
