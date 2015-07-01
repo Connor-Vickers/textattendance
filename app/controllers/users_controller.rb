@@ -10,16 +10,16 @@ class UsersController < ApplicationController
 	def create
 	  @newuser = User.new(user_params)
 
-	  #if @user.email == "hvicker@purdue.edu" or  @user.email == "connorvic97@gmail.com" or @user.email == "mit"
+	  if @user.email == "hvicker@purdue.edu" or  @user.email == "connorvic97@gmail.com" or @user.email == "mit"
       if @newuser.save
         Mailer.validation_email(@newuser).deliver
         redirect_to root_url, :notice => 'An Email has been sent to ' + @newuser.email + ' follow the link to validate your email and sign in.'
       else
         render "new"
       end
-    #else
-    #  redirect_to root_url, :notice => 'At this time Text Attendance only open to beta users.'
-    #end
+    else
+      redirect_to root_url, :notice => 'At this time Text Attendance only open to beta users.'
+    end
 	end
 
   def validate
